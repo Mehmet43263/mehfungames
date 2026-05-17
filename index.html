@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehfunGames | Official Mobile Indie Game Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-color: #1e293b;
+            --accent-color: #3b82f6;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Apps/Games Section */
+        .apps-section {
+            padding: 100px 8%;
+            background-color: rgba(30, 41, 59, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .app-card {
+            background-color: var(--card-color);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .app-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .app-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .playstore-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .playstore-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b111e;
+            padding: 60px 8% 30px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: #475569;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .apps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Mehfun<span>Games</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#apps">Uygulamalarımız</a></li>
+            <li><a href="mailto:mehfungames@gmail.com">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Mobil Dünyada <span>Eğlenceyi</span> Keşfedin</h1>
+        <p>MehfunGames olarak, kullanıcıların günlük hayatına neşe ve heyecan katacak benzersiz mobil uygulamalar ve bağımsız oyunlar geliştiriyoruz.</p>
+        <a href="#apps" class="cta-btn">Projelerimize Göz At</a>
+    </section>
+
+    <section class="apps-section" id="apps">
+        <h2 class="section-title">Mobil <span>Uygulamalarımız</span></h2>
+        
+        <div class="apps-grid">
+            <div class="app-card">
+                <div>
+                    <div class="app-icon"><i class="fa-solid fa-face-laugh-wink"></i></div>
+                    <h3>The Ultimate Prank Machine</h3>
+                    <p>Arkadaşlarınıza kusursuz şakalar yapabileceğiniz benzersiz ses efektleri, interaktif troller ve kullanımı kolay arayüz içeren eğlence paneli!</p>
+                </div>
+                <a href="#" class="playstore-btn" target="_blank">
+                    <i class="fa-brands fa-google-play"></i> Google Play'de İndir
+                </a>
+            </div>
+
+            <div class="app-card">
+                <div>
+                    <div class="app-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3>Yeni Proje</h3>
+                    <p>Kullanıcı deneyimini zirveye taşıyacak, yepyeni bir bağımsız mobil oyun/uygulama projesi üzerinde çalışıyoruz. Çok yakında burada!</p>
+                </div>
+                <a href="#" class="playstore-btn" style="opacity: 0.5; pointer-events: none;">
+                    <i class="fa-solid fa-hourglass-start"></i> Çok Yakında
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Mehfun<span>Games</span></div>
+        <p class="footer-text">Yenilikçi fikirleri kodlara dökerek dijital dünyada kalıcı izler bırakıyoruz.</p>
+        
+        <div class="footer-links">
+            <a href="mailto:mehfungames@gmail.com"><i class="fa-solid fa-envelope"></i> İletişim</a>
+            <a href="#privacy"><i class="fa-solid fa-shield-halved"></i> Gizlilik Politikası (Privacy Policy)</a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 MehfunGames. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+</body>
+</html>
