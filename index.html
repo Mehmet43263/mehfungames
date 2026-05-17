@@ -41,7 +41,7 @@
         [data-theme="dark"] {
             --bg-main: #06060e;
             --bg-surface: rgba(13, 13, 25, 0.7);
-            --bg-card: #0d0d17; /* Yarı saydam veya koyu lacivert */
+            --bg-card: #0d0d17; 
             --bg-footer: #030307;
             --primary: #00f0ff;
             --secondary: #bd00ff;
@@ -228,12 +228,19 @@
         }
         .nav-logo { height: 40px; display: flex; align-items: center; }
         .nav-logo img { height: 100%; object-fit: contain; }
+        
         .nav-brand-text {
             font-size: 1.3rem;
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: -0.5px;
         }
+        .nav-brand-text .highlight {
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .nav-links {
             display: flex;
             gap: 35px;
@@ -732,12 +739,15 @@
             line-height: 1.5;
         }
 
-        /* 6. Canlı Operasyonlar (LiveOps) */
+        /* 6. Canlı Operasyonlar (LiveOps) Merkezi Hizalama */
         .liveops-container {
-            display: grid;
-            grid-template-columns: 0.90fr 1.1fr;
-            gap: 60px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            gap: 40px;
         }
         .liveops-content h3 {
             font-size: 2.5rem;
@@ -756,67 +766,29 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+            width: 100%;
         }
         .metric-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
-            padding: 20px;
+            padding: 30px 20px;
             border-radius: 12px;
             position: relative;
             box-shadow: var(--shadow-premium);
+            text-align: center;
         }
         .metric-card h4 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--primary);
             margin-bottom: 5px;
         }
         .metric-card:nth-child(2) h4 { color: var(--secondary); }
         .metric-card p {
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             margin: 0;
-        }
-        .liveops-visual {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        .mockup-wrapper {
-            width: 100%;
-            max-width: 520px;
-            background: var(--bg-card);
-            border: 12px solid var(--border-glass);
-            border-radius: 24px;
-            box-shadow: var(--shadow-premium);
-            overflow: hidden;
-            position: relative;
-        }
-        [data-theme="dark"] .mockup-wrapper {
-            background: #12121e;
-            border-color: #232338;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(189,0,255,0.15);
-        }
-        .mockup-wrapper img {
-            width: 100%;
-            display: block;
-            height: auto;
-        }
-        .mockup-header {
-            height: 24px;
-            background: var(--bg-main);
-            display: flex;
-            align-items: center;
-            padding-left: 15px;
-            gap: 6px;
-        }
-        [data-theme="dark"] .mockup-header { background: #1e1e30; }
-        .mockup-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-muted);
-            opacity: 0.5;
+            font-weight: 500;
         }
 
         /* 7. Tasarım ve Teknoloji Yığınımız (Marquee) */
@@ -876,16 +848,18 @@
             user-select: none;
         }
         .faq-header h4 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-main);
             transition: color 0.3s ease;
+            padding-right: 20px;
         }
         .faq-icon {
             width: 24px;
             height: 24px;
             position: relative;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
         }
         .faq-icon::before, .faq-icon::after {
             content: '';
@@ -895,6 +869,7 @@
         }
         .faq-icon::before { top: 11px; left: 4px; width: 16px; height: 2px; }
         .faq-icon::after { top: 4px; left: 11px; width: 2px; height: 16px; }
+        
         .faq-item.active {
             border-color: var(--primary);
             background: var(--bg-card);
@@ -1020,6 +995,9 @@
             font-weight: 800;
             color: var(--text-inverse);
         }
+        .footer-brand-text .highlight {
+            color: var(--primary);
+        }
         .footer-col h5 {
             font-size: 1.1rem;
             font-weight: 700;
@@ -1124,7 +1102,6 @@
             .hero-title { font-size: 3.5rem; }
             .vision-grid { grid-template-columns: repeat(2, 1fr); }
             .showcase-container { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
-            .liveops-container { grid-template-columns: 1fr; gap: 40px; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -1160,6 +1137,7 @@
             .timeline-container::after { left: 22px; right: auto; }
             .right::after { left: 22px; }
             
+            .metrics-grid { grid-template-columns: 1fr; }
             .contact-container { padding: 30px 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 35px; }
             .newsletter-form { flex-direction: column; }
@@ -1191,14 +1169,12 @@
             <div class="nav-logo">
                 <img src="MehfunLogo.png" alt="MehfunGames">
             </div>
-            <span class="nav-brand-text">MehfunGames</span>
+            <span class="nav-brand-text"><span class="highlight">Mehfun</span>Games</span>
         </a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#hero">Üs</a></li>
-            <li><a href="#vision">Vizyon</a></li>
-            <li><a href="#showcase">Ana Ürün</a></li>
+            <li><a href="#vision">Vizyonumuz</a></li>
+            <li><a href="#showcase">Ürünlerimiz</a></li>
             <li><a href="#timeline">Süreç</a></li>
-            <li><a href="#liveops">Metrikler</a></li>
             <li><a href="#faq">S.S.S.</a></li>
         </ul>
         <div class="nav-actions">
@@ -1257,7 +1233,7 @@
 
     <!-- 4. Ana Ürün Vitrini -->
     <section id="showcase">
-        <h2 class="section-title">Amiral Gemisi <span>Ürünümüz</span></h2>
+        <h2 class="section-title">Amiral Gemisi <span>Ürünlerimiz</span></h2>
         <div class="showcase-container reveal reveal-fade">
             <div class="showcase-content">
                 <span class="showcase-tag">Öne Çıkan Uygulama</span>
@@ -1350,11 +1326,11 @@
         </div>
     </section>
 
-    <!-- 6. Canlı Operasyonlar (LiveOps) -->
+    <!-- 6. Canlı Operasyonlar Merkezi Tasarım -->
     <section id="liveops">
         <h2 class="section-title">Canlı <span>Operasyonlar</span></h2>
-        <div class="liveops-container">
-            <div class="liveops-content reveal reveal-left">
+        <div class="liveops-container reveal reveal-up">
+            <div class="liveops-content">
                 <h3>Veri Odaklı Büyüme Stratejisi</h3>
                 <p>Uygulamalarımızın ve oyunlarımızın küresel mağazalardaki performansını, kullanıcı tutundurma oranlarını ve metrik anomalilerini anlık olarak izliyoruz. Gerçek zamanlı LiveOps operasyonlarımız sayesinde kullanıcı taleplerine hızla yanıt veriyoruz.</p>
                 <div class="metrics-grid">
@@ -1366,16 +1342,6 @@
                         <h4>100K+</h4>
                         <p>Aktif Etkileşim Potansiyeli</p>
                     </div>
-                </div>
-            </div>
-            <div class="liveops-visual reveal reveal-right">
-                <div class="mockup-wrapper">
-                    <div class="mockup-header">
-                        <div class="mockup-dot"></div>
-                        <div class="mockup-dot"></div>
-                        <div class="mockup-dot"></div>
-                    </div>
-                    <img src="image_27072e.png" alt="Google Play Console Canlı Analiz Ekranı">
                 </div>
             </div>
         </div>
@@ -1419,7 +1385,8 @@
                     </div>
                 </div>
             </div>
-            <div class="faq-item reveal reveal-up">
+            
+            <div class="faq-item reveal reveal-up delay-1">
                 <div class="faq-header">
                     <h4>Uygulama içi optimizasyon sürecini nasıl yönetiyorsunuz?</h4>
                     <div class="faq-icon"></div>
@@ -1430,7 +1397,44 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="faq-item reveal reveal-up delay-2">
+                <div class="faq-header">
+                    <h4>Oyunlarınızda hangi oyun motorunu kullanıyorsunuz?</h4>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-content">
+                        Ağırlıklı olarak performans ve esnekliği bir arada sunan Unity 3D oyun motorunu kullanıyoruz. Mobil uygulamalarımızda ise native Android geliştirme (Kotlin) prensiplerini tercih ediyoruz.
+                    </div>
+                </div>
+            </div>
+
             <div class="faq-item reveal reveal-up">
+                <div class="faq-header">
+                    <h4>Yayınladığınız uygulamalarda veri gizliliğini nasıl sağlıyorsunuz?</h4>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-content">
+                        Uygulamalarımızda uluslararası veri gizliliği standartlarına tam uyum sağlıyoruz. Sadece uygulamanın çalışması için gerekli olan minimal düzeyde veriyi şifreleyerek anonim bir şekilde saklıyoruz.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item reveal reveal-up delay-1">
+                <div class="faq-header">
+                    <h4>Stajyer veya yeni ekip arkadaşı alımınız var mı?</h4>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-body">
+                    <div class="faq-content">
+                        Geleceğin yetenekli yazılımcılarına ve tasarımcılarına her zaman kapımız açık. Açık pozisyonlarımız olmasa bile iletişim sayfamızdan portfolyonuzu ve kendinizi tanıtan bir mail atabilirsiniz.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item reveal reveal-up delay-2">
                 <div class="faq-header">
                     <h4>Yeni bir proje fikri için iş birliklerine açık mısınız?</h4>
                     <div class="faq-icon"></div>
@@ -1480,17 +1484,17 @@
                     <div class="footer-logo">
                         <img src="MehfunLogo.png" alt="MehfunGames Logo">
                     </div>
-                    <span class="footer-brand-text">MehfunGames</span>
+                    <span class="footer-brand-text"><span class="highlight">Mehfun</span>Games</span>
                 </a>
                 <p>MehfunGames, mobil dünya için yüksek kaliteli, eğlenceli ve kullanıcı odaklı dijital deneyimler tasarlayan bağımsız bir stüdyodur.</p>
             </div>
             <div class="footer-col">
                 <h5>Navigasyon</h5>
                 <ul>
-                    <li><a href="#hero">Üs</a></li>
-                    <li><a href="#vision">Kreatif Vizyon</a></li>
-                    <li><a href="#showcase">Ana Ürün</a></li>
-                    <li><a href="#timeline">Yol Haritası</a></li>
+                    <li><a href="#vision">Vizyonumuz</a></li>
+                    <li><a href="#showcase">Ürünlerimiz</a></li>
+                    <li><a href="#timeline">Süreç</a></li>
+                    <li><a href="#faq">S.S.S.</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1631,14 +1635,17 @@
                 const body = item.querySelector('.faq-body');
                 
                 if (item.classList.contains('active')) {
+                    // Tıklanan zaten açıksa kapat
                     body.style.maxHeight = null;
                     item.classList.remove('active');
                 } else {
+                    // Diğer açık olanları kapat (Opsiyonel - bir tane açık kalsın istersen)
                     document.querySelectorAll('.faq-item.active').forEach(activeItem => {
                         activeItem.querySelector('.faq-body').style.maxHeight = null;
                         activeItem.classList.remove('active');
                     });
                     
+                    // Tıklananı aç
                     item.classList.add('active');
                     body.style.maxHeight = body.scrollHeight + "px";
                 }
