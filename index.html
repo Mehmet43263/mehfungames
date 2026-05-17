@@ -21,7 +21,7 @@
             --accent: #db2777; 
             --text-main: #0f172a; 
             --text-muted: #475569; 
-            --text-inverse: #ffffff; /* Footer gibi koyu zeminlerdeki yazı rengi */
+            --text-inverse: #ffffff; /* Footer gibi koyu zeminlerdeki yazı rengi her zaman beyaz kalmalı */
             --text-footer-muted: #94a3b8;
             --border-glass: rgba(15, 23, 42, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -48,7 +48,7 @@
             --accent: #ff007f;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            --text-inverse: #ffffff; /* DÜZELTME: Karanlık temada da footer koyu olduğu için yazı BEYAZ kalmalı */
+            --text-inverse: #ffffff; /* ÇÖZÜM: Karanlık modda da footer arka planı koyu olduğu için yazı beyaz kalıyor */
             --text-footer-muted: #9ca3af;
             --border-glass: rgba(255, 255, 255, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -235,7 +235,7 @@
             color: var(--text-main);
             letter-spacing: -0.5px;
         }
-        .nav-brand-text .highlight {
+        .nav-brand-text .highlight, .footer-brand-text .highlight {
             background: var(--gradient-cyber);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -991,17 +991,11 @@
         .footer-logo { height: 40px; }
         .footer-logo img { height: 100%; object-fit: contain; }
         
-        /* DÜZELTME: Footer Logo Metni (Aynı Navbar Gibi Olacak) */
         .footer-brand-text {
             font-size: 1.3rem;
             font-weight: 800;
             color: var(--text-inverse);
             letter-spacing: -0.5px;
-        }
-        .footer-brand-text .highlight {
-            background: var(--gradient-cyber);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         
         .footer-col h5 {
@@ -1296,14 +1290,14 @@
                 <div class="timeline-content">
                     <div class="timeline-step">Aşama 01</div>
                     <h3>Fikir & Konsept</h3>
-                    <p>Pazar trendlerini, kullanıcı reflekslerini ve eğlence açıklarını analiz ederek benzersiz uygulama fikirleri geliştiriyor, ilk mekanik eskizlerini hazırlıyoruz.</p>
+                    <p>Pazar trendlerini, kullanıcı reflekslerini abuses ve eğlence açıklarını analiz ederek benzersiz uygulama fikirleri geliştiriyor, ilk mekanik eskizlerini hazırlıyoruz.</p>
                 </div>
             </div>
             <div class="timeline-container right reveal reveal-right">
                 <div class="timeline-content">
                     <div class="timeline-step">Aşama 02</div>
                     <h3>UI/UX & Grafik Tasarım</h3>
-                    <p>Figma ve Photoshop kullanarak ekran akışlarını, oyun içi varlıkları ve göz alıcı renk paletlerini piksel hassasiyetinde hayata geçiriyoruz.</p>
+                    <p>Figma platforms ve Photoshop kullanarak ekran akışlarını, oyun içi varlıkları ve göz alıcı renk paletlerini piksel hassasiyetinde hayata geçiriyoruz.</p>
                 </div>
             </div>
             <div class="timeline-container left reveal reveal-left">
@@ -1444,23 +1438,26 @@
     <section id="contact">
         <h2 class="section-title">Stüdyo ile <span>İletişime Geç</span></h2>
         <div class="contact-container reveal reveal-up">
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Mesajınız başarıyla şifrelendi ve merkez üssümüze iletildi!');">
+            <form action="https://formsubmit.co/devmehfungames@gmail.com" method="POST" class="contact-form">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
                 <div class="form-group">
                     <label for="name">İsim veya Stüdyo Adı</label>
                     <div class="input-wrapper">
-                        <input type="text" id="name" class="form-control" placeholder="Örn. Mehmet Yılmaz" required>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Örn. Mehmet Yılmaz" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">E-posta Adresi</label>
                     <div class="input-wrapper">
-                        <input type="email" id="email" class="form-control" placeholder="isim@ornek.com" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="isim@ornek.com" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="message">Mesajınız / Proje Detayları</label>
                     <div class="input-wrapper">
-                        <textarea id="message" class="form-control" placeholder="Fikrinizden veya sormak istediğiniz sorulardan bahsedin..." required></textarea>
+                        <textarea id="message" name="message" class="form-control" placeholder="Fikrinizden veya sormak istediğiniz sorulardan bahsedin..." required></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn-submit">Sinyali Gönder</button>
@@ -1520,7 +1517,6 @@
         const themeToggle = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
         
-        // Kayıtlı temayı veya sistem tercihini kontrol et
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
@@ -1528,7 +1524,6 @@
             htmlElement.setAttribute('data-theme', 'dark');
         }
         
-        // Butona tıklandığında temayı değiştir
         themeToggle.addEventListener('click', () => {
             if (htmlElement.getAttribute('data-theme') === 'dark') {
                 htmlElement.removeAttribute('data-theme');
@@ -1625,17 +1620,14 @@
                 const body = item.querySelector('.faq-body');
                 
                 if (item.classList.contains('open')) {
-                    // Tıklanan zaten açıksa kapat
                     body.style.maxHeight = null;
                     item.classList.remove('open');
                 } else {
-                    // Diğer açık olanları kapat
                     document.querySelectorAll('.faq-item.open').forEach(activeItem => {
                         activeItem.querySelector('.faq-body').style.maxHeight = null;
                         activeItem.classList.remove('open');
                     });
                     
-                    // Tıklananı aç
                     item.classList.add('open');
                     body.style.maxHeight = body.scrollHeight + "px";
                 }
