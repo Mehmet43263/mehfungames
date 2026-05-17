@@ -21,7 +21,7 @@
             --accent: #db2777; 
             --text-main: #0f172a; 
             --text-muted: #475569; 
-            --text-inverse: #ffffff; /* Footer gibi koyu zeminlerdeki yazı rengi her zaman beyaz kalmalı */
+            --text-inverse: #ffffff;
             --text-footer-muted: #94a3b8;
             --border-glass: rgba(15, 23, 42, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -48,7 +48,7 @@
             --accent: #ff007f;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            --text-inverse: #ffffff; /* ÇÖZÜM: Karanlık modda da footer arka planı koyu olduğu için yazı beyaz kalıyor */
+            --text-inverse: #ffffff;
             --text-footer-muted: #9ca3af;
             --border-glass: rgba(255, 255, 255, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -997,6 +997,11 @@
             color: var(--text-inverse);
             letter-spacing: -0.5px;
         }
+        .footer-brand-text .highlight {
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         
         .footer-col h5 {
             font-size: 1.1rem;
@@ -1277,7 +1282,7 @@
             
             <div class="showcase-visual">
                 <div class="game-img-wrapper tilt-card">
-                    <img src="GameLogo.png" alt="Prank Machine">
+                    <img src="GameLogo.jpg" alt="Prank Machine">
                 </div>
             </div>
         </div>
@@ -1290,14 +1295,14 @@
                 <div class="timeline-content">
                     <div class="timeline-step">Aşama 01</div>
                     <h3>Fikir & Konsept</h3>
-                    <p>Pazar trendlerini, kullanıcı reflekslerini abuses ve eğlence açıklarını analiz ederek benzersiz uygulama fikirleri geliştiriyor, ilk mekanik eskizlerini hazırlıyoruz.</p>
+                    <p>Pazar trendlerini, kullanıcı reflekslerini ve eğlence açıklarını analiz ederek benzersiz uygulama fikirleri geliştiriyor, ilk mekanik eskizlerini hazırlıyoruz.</p>
                 </div>
             </div>
             <div class="timeline-container right reveal reveal-right">
                 <div class="timeline-content">
                     <div class="timeline-step">Aşama 02</div>
                     <h3>UI/UX & Grafik Tasarım</h3>
-                    <p>Figma platforms ve Photoshop kullanarak ekran akışlarını, oyun içi varlıkları ve göz alıcı renk paletlerini piksel hassasiyetinde hayata geçiriyoruz.</p>
+                    <p>Figma ve Photoshop kullanarak ekran akışlarını, oyun içi varlıkları ve göz alıcı renk paletlerini piksel hassasiyetinde hayata geçiriyoruz.</p>
                 </div>
             </div>
             <div class="timeline-container left reveal reveal-left">
@@ -1438,10 +1443,7 @@
     <section id="contact">
         <h2 class="section-title">Stüdyo ile <span>İletişime Geç</span></h2>
         <div class="contact-container reveal reveal-up">
-            <form action="https://formsubmit.co/devmehfungames@gmail.com" method="POST" class="contact-form">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                
+            <form id="contactForm" class="contact-form">
                 <div class="form-group">
                     <label for="name">İsim veya Stüdyo Adı</label>
                     <div class="input-wrapper">
@@ -1460,7 +1462,7 @@
                         <textarea id="message" name="message" class="form-control" placeholder="Fikrinizden veya sormak istediğiniz sorulardan bahsedin..." required></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn-submit">Sinyali Gönder</button>
+                <button type="submit" id="submitBtn" class="btn-submit">Sinyali Gönder</button>
             </form>
         </div>
     </section>
@@ -1578,7 +1580,7 @@
             });
         });
 
-        // 3D Tilt Kart Efekti (Amiral Gemisi Görseli İçin)
+        // 3D Tilt Kart Efekti
         const tiltCard = document.querySelector('.tilt-card');
         if (tiltCard) {
             tiltCard.addEventListener('mousemove', (e) => {
@@ -1613,7 +1615,7 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // FAQ Accordion Mekanizması DÜZELTİLDİ ("active" yerine "open" kullanılıyor)
+        // FAQ Accordion Mekanizması
         document.querySelectorAll('.faq-header').forEach(header => {
             header.addEventListener('click', () => {
                 const item = header.parentElement;
@@ -1633,6 +1635,52 @@
                 }
             });
         });
+
+        // AJAX FormSubmit İşlemi (Sayfa Yenilenmez)
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Sayfanın FormSubmit'e yönlenmesini durdurur
+                
+                const originalText = submitBtn.innerText;
+                submitBtn.innerText = "Sinyal İletiliyor...";
+                submitBtn.style.opacity = "0.7";
+                submitBtn.disabled = true;
+
+                const nameVal = document.getElementById('name').value;
+                const emailVal = document.getElementById('email').value;
+                const messageVal = document.getElementById('message').value;
+
+                fetch("https://formsubmit.co/ajax/devmehfungames@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        İsim: nameVal,
+                        Email: emailVal,
+                        Mesaj: messageVal
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Mesajınız başarıyla şifrelendi ve merkez üssümüze iletildi!');
+                    contactForm.reset(); // Formu temizler
+                    submitBtn.innerText = originalText;
+                    submitBtn.style.opacity = "1";
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    alert('Sinyal iletilemedi (Sunucu Hatası). Lütfen daha sonra tekrar deneyin.');
+                    submitBtn.innerText = originalText;
+                    submitBtn.style.opacity = "1";
+                    submitBtn.disabled = false;
+                });
+            });
+        }
     </script>
 </body>
 </html>
