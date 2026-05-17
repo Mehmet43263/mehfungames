@@ -7,20 +7,65 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+        /* ----------------------------------
+           Aydınlık (Light) Tema Değişkenleri 
+           (Varsayılan)
+        ----------------------------------- */
         :root {
             --bg-main: #f8fafc;
             --bg-surface: rgba(255, 255, 255, 0.85);
-            --bg-surface-glow: rgba(241, 245, 249, 0.5);
-            --primary: #2563eb; /* Safir Mavisi */
-            --secondary: #7c3aed; /* Canlı Mor */
-            --accent: #db2777; /* Derin Pembe/Gül */
-            --text-main: #0f172a; /* Koyu Gece Mavisi */
-            --text-muted: #475569; /* Yumuşak Gri */
-            --font-family: 'Plus Jakarta Sans', sans-serif;
-            --gradient-cyber: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-hot: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            --bg-card: #ffffff;
+            --bg-footer: #0f172a;
+            --primary: #2563eb; 
+            --secondary: #7c3aed; 
+            --accent: #db2777; 
+            --text-main: #0f172a; 
+            --text-muted: #475569; 
+            --text-inverse: #ffffff;
+            --text-footer-muted: #94a3b8;
             --border-glass: rgba(15, 23, 42, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+            --font-family: 'Plus Jakarta Sans', sans-serif;
+            --gradient-cyber: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --input-bg: #f8fafc;
+            --input-focus: #ffffff;
+            --btn-text: #ffffff;
+            --glow-opacity: 0.06;
+            --glow-1: rgba(124, 58, 237, var(--glow-opacity));
+            --glow-2: rgba(37, 99, 236, var(--glow-opacity));
+        }
+
+        /* ----------------------------------
+           Karanlık (Dark) Tema Değişkenleri 
+        ----------------------------------- */
+        [data-theme="dark"] {
+            --bg-main: #06060e;
+            --bg-surface: rgba(13, 13, 25, 0.7);
+            --bg-card: #0d0d17; /* Yarı saydam veya koyu lacivert */
+            --bg-footer: #030307;
+            --primary: #00f0ff;
+            --secondary: #bd00ff;
+            --accent: #ff007f;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-inverse: #040408;
+            --text-footer-muted: #9ca3af;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
+            --gradient-cyber: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --input-bg: #0d0d17;
+            --input-focus: #0a0a12;
+            --btn-text: #040408;
+            --glow-opacity: 0.15;
+            --glow-1: rgba(189, 0, 255, var(--glow-opacity));
+            --glow-2: rgba(0, 240, 255, var(--glow-opacity));
+        }
+
+        /* Tema Geçiş Animasyonu */
+        body, .navbar, .vision-card, .showcase-container, .timeline-content, 
+        .metric-card, .faq-item, .contact-container, .form-control, .input-wrapper,
+        .footer, .footer-bottom, .playstore-btn {
+            transition: background-color 0.5s ease, background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
         }
 
         * {
@@ -43,12 +88,8 @@
         }
 
         /* Özelleştirilmiş Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-main);
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(var(--primary), var(--secondary));
             border-radius: 5px;
@@ -61,7 +102,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
+            background: var(--bg-main);
             z-index: 99999;
             display: flex;
             flex-direction: column;
@@ -90,7 +131,7 @@
         .loader-bar-container {
             width: 240px;
             height: 4px;
-            background: rgba(15, 23, 42, 0.05);
+            background: var(--border-glass);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
@@ -120,21 +161,23 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, var(--glow-1) 0%, rgba(255,255,255,0) 70%);
             top: -10%;
             left: -10%;
             z-index: -1;
             pointer-events: none;
+            transition: background 0.5s ease;
         }
         .ambient-glow-2 {
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(37, 99, 236, 0.05) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, var(--glow-2) 0%, rgba(255,255,255,0) 70%);
             top: 40%;
             right: -20%;
             z-index: -1;
             pointer-events: none;
+            transition: background 0.5s ease;
         }
 
         /* Ortak Seksiyon Ayarları */
@@ -156,7 +199,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* 1. Dinamik Navbar */
+        /* 1. Dinamik Navbar & Tema Butonu */
         .navbar {
             position: fixed;
             top: 0;
@@ -167,12 +210,11 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: all 0.4s ease;
             border-bottom: 1px solid transparent;
         }
         .navbar.scrolled {
             padding: 14px 8%;
-            background: rgba(248, 250, 252, 0.85);
+            background: var(--bg-surface);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass);
@@ -184,15 +226,8 @@
             gap: 12px;
             text-decoration: none;
         }
-        .nav-logo {
-            height: 40px;
-            display: flex;
-            align-items: center;
-        }
-        .nav-logo img {
-            height: 100%;
-            object-fit: contain;
-        }
+        .nav-logo { height: 40px; display: flex; align-items: center; }
+        .nav-logo img { height: 100%; object-fit: contain; }
         .nav-brand-text {
             font-size: 1.3rem;
             font-weight: 800;
@@ -222,15 +257,43 @@
             background: var(--gradient-cyber);
             transition: width 0.3s ease;
         }
-        .nav-links a:hover {
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
             color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-premium);
+            font-size: 1.2rem;
         }
-        .nav-links a:hover::after {
-            width: 100%;
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
+        
+        /* Tema İkonu Mantığı */
+        [data-theme="dark"] .icon-moon { display: none; }
+        [data-theme="dark"] .icon-sun { display: block; }
+        :root:not([data-theme="dark"]) .icon-moon { display: block; }
+        :root:not([data-theme="dark"]) .icon-sun { display: none; }
+
         .nav-cta {
             background: var(--text-main);
-            color: #ffffff;
+            color: var(--bg-main);
             font-weight: 700;
             padding: 11px 24px;
             border-radius: 8px;
@@ -242,14 +305,17 @@
         .nav-cta:hover {
             transform: translateY(-2px);
             background: var(--primary);
+            color: #ffffff;
             box-shadow: 0 6px 20px rgba(37, 99, 236, 0.25);
         }
+        
         .menu-toggle {
             display: none;
             flex-direction: column;
             gap: 6px;
             background: none;
             border: none;
+            cursor: pointer;
         }
         .menu-toggle span {
             width: 28px;
@@ -275,7 +341,7 @@
             z-index: 10;
         }
         .hero-badge {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             padding: 8px 18px;
             border-radius: 100px;
@@ -316,7 +382,7 @@
         }
         .btn-primary {
             background: var(--gradient-cyber);
-            color: #ffffff;
+            color: var(--btn-text);
             font-weight: 700;
             padding: 16px 36px;
             border-radius: 10px;
@@ -325,12 +391,15 @@
             box-shadow: 0 10px 25px -5px rgba(37, 99, 236, 0.3);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+        [data-theme="dark"] .btn-primary { box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px -5px rgba(124, 38, 237, 0.4);
         }
+        [data-theme="dark"] .btn-primary:hover { box-shadow: 0 0 30px rgba(189, 0, 255, 0.5); }
+        
         .btn-secondary {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             color: var(--text-main);
             font-weight: 600;
@@ -342,7 +411,7 @@
             box-shadow: var(--shadow-premium);
         }
         .btn-secondary:hover {
-            background: #f1f5f9;
+            background: var(--border-glass);
             transform: translateY(-3px);
             border-color: var(--text-muted);
         }
@@ -359,10 +428,11 @@
         }
         .shape-blob {
             position: absolute;
-            background: linear-gradient(45deg, rgba(37, 99, 236, 0.04), rgba(124, 58, 237, 0.04));
+            background: linear-gradient(45deg, var(--glow-2), var(--glow-1));
             border-radius: 50%;
             filter: blur(80px);
             animation: floatingBlob 12s infinite alternate ease-in-out;
+            transition: background 0.5s ease;
         }
         .sb-1 { width: 400px; height: 400px; top: 10%; left: 15%; animation-delay: 0s; }
         .sb-2 { width: 500px; height: 500px; bottom: 10%; right: 10%; animation-delay: 3s; }
@@ -380,7 +450,7 @@
             margin-top: 20px;
         }
         .vision-card {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 20px;
             padding: 40px 35px;
@@ -396,23 +466,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(37, 99, 236, 0.02) 0%, rgba(124, 58, 237, 0.02) 100%);
+            background: linear-gradient(135deg, var(--glow-2) 0%, var(--glow-1) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
         .vision-card:hover {
             transform: translateY(-8px);
             border-color: rgba(37, 99, 236, 0.2);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0,0,0,0.02);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
         }
-        .vision-card:hover::before {
-            opacity: 1;
+        [data-theme="dark"] .vision-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0,240,255,0.05);
         }
+        .vision-card:hover::before { opacity: 1; }
+        
         .vision-icon {
             width: 60px;
             height: 60px;
-            background: #f1f5f9;
-            border: 1px solid rgba(15, 23, 42, 0.04);
+            background: var(--bg-main);
+            border: 1px solid var(--border-glass);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -441,7 +514,7 @@
             grid-template-columns: 1.1fr 0.9fr;
             gap: 60px;
             align-items: center;
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 32px;
             padding: 60px;
@@ -485,7 +558,7 @@
         .feature-check {
             width: 20px;
             height: 20px;
-            background: rgba(37, 99, 236, 0.08);
+            background: var(--border-glass);
             border: 1px solid var(--primary);
             border-radius: 6px;
             display: flex;
@@ -516,27 +589,35 @@
             border: 1px solid transparent;
             padding: 12px 28px;
             border-radius: 12px;
-            color: #fff;
+            color: var(--bg-main);
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 10px 20px rgba(15, 23, 42, 0.1);
+        }
+        [data-theme="dark"] .playstore-btn {
+            background: #000;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
         }
         .playstore-btn:hover {
             background: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(37, 99, 236, 0.25);
+            color: #ffffff;
+        }
+        [data-theme="dark"] .playstore-btn:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
         }
         .playstore-btn svg {
             width: 28px;
             height: 28px;
-            fill: #ffffff;
+            fill: currentColor;
         }
-        .playstore-btn .btn-info text {
-            display: block;
-        }
+        .playstore-btn .btn-info text { display: block; }
         .playstore-btn .subtext {
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.7);
+            opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -554,12 +635,16 @@
             position: relative;
             border-radius: 24px;
             padding: 10px;
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             box-shadow: var(--shadow-premium);
             transition: transform 0.1s ease;
             transform-style: preserve-3d;
             perspective: 1000px;
+        }
+        [data-theme="dark"] .game-img-wrapper {
+            background: linear-gradient(135deg, rgba(0,240,255,0.3), rgba(189,0,255,0.3));
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(189, 0, 255, 0.2);
         }
         .game-img-wrapper img {
             width: 100%;
@@ -589,7 +674,6 @@
         .timeline-container {
             padding: 10px 40px;
             position: relative;
-            background: inherit;
             width: 50%;
         }
         .timeline-container::after {
@@ -605,20 +689,18 @@
             z-index: 1;
             box-shadow: 0 0 10px rgba(37, 99, 236, 0.2);
         }
-        .left {
-            left: 0;
-        }
-        .right {
-            left: 50%;
-        }
+        [data-theme="dark"] .timeline-container::after { box-shadow: 0 0 10px var(--primary); }
+        .left { left: 0; }
+        .right { left: 50%; }
         .right::after {
             left: -8px;
             border-color: var(--secondary);
             box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
         }
+        [data-theme="dark"] .right::after { box-shadow: 0 0 10px var(--secondary); }
         .timeline-content {
             padding: 30px;
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             position: relative;
             border-radius: 16px;
@@ -637,9 +719,7 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
         }
-        .right .timeline-step {
-            color: var(--secondary);
-        }
+        .right .timeline-step { color: var(--secondary); }
         .timeline-content h3 {
             font-size: 1.3rem;
             font-weight: 700;
@@ -678,7 +758,7 @@
             gap: 20px;
         }
         .metric-card {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             padding: 20px;
             border-radius: 12px;
@@ -705,12 +785,17 @@
         .mockup-wrapper {
             width: 100%;
             max-width: 520px;
-            background: #ffffff;
-            border: 12px solid #e2e8f0;
+            background: var(--bg-card);
+            border: 12px solid var(--border-glass);
             border-radius: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.05), var(--shadow-premium);
+            box-shadow: var(--shadow-premium);
             overflow: hidden;
             position: relative;
+        }
+        [data-theme="dark"] .mockup-wrapper {
+            background: #12121e;
+            border-color: #232338;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(189,0,255,0.15);
         }
         .mockup-wrapper img {
             width: 100%;
@@ -719,27 +804,30 @@
         }
         .mockup-header {
             height: 24px;
-            background: #f1f5f9;
+            background: var(--bg-main);
             display: flex;
             align-items: center;
             padding-left: 15px;
             gap: 6px;
         }
+        [data-theme="dark"] .mockup-header { background: #1e1e30; }
         .mockup-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #cbd5e1;
+            background: var(--text-muted);
+            opacity: 0.5;
         }
 
         /* 7. Tasarım ve Teknoloji Yığınımız (Marquee) */
         .marquee-section {
             padding: 40px 0;
-            background: #ffffff;
+            background: var(--bg-card);
             border-top: 1px solid var(--border-glass);
             border-bottom: 1px solid var(--border-glass);
             overflow: hidden;
         }
+        [data-theme="dark"] .marquee-section { background: rgba(255, 255, 255, 0.01); }
         .marquee-wrapper {
             display: flex;
             width: max-content;
@@ -757,9 +845,7 @@
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
-        .marquee-item:hover {
-            color: var(--primary);
-        }
+        .marquee-item:hover { color: var(--primary); }
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -774,7 +860,7 @@
             gap: 15px;
         }
         .faq-item {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 14px;
             overflow: hidden;
@@ -807,28 +893,14 @@
             background-color: var(--text-main);
             transition: background-color 0.3s ease;
         }
-        .faq-icon::before {
-            top: 11px;
-            left: 4px;
-            width: 16px;
-            height: 2px;
-        }
-        .faq-icon::after {
-            top: 4px;
-            left: 11px;
-            width: 2px;
-            height: 16px;
-        }
+        .faq-icon::before { top: 11px; left: 4px; width: 16px; height: 2px; }
+        .faq-icon::after { top: 4px; left: 11px; width: 2px; height: 16px; }
         .faq-item.active {
             border-color: var(--primary);
-            background: #ffffff;
+            background: var(--bg-card);
         }
-        .faq-item.active .faq-header h4 {
-            color: var(--primary);
-        }
-        .faq-item.active .faq-icon {
-            transform: rotate(135deg);
-        }
+        .faq-item.active .faq-header h4 { color: var(--primary); }
+        .faq-item.active .faq-icon { transform: rotate(135deg); }
         .faq-item.active .faq-icon::before, .faq-item.active .faq-icon::after {
             background-color: var(--primary);
         }
@@ -848,7 +920,7 @@
         .contact-container {
             max-width: 700px;
             margin: 0 auto;
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-glass);
             border-radius: 24px;
             padding: 50px;
@@ -875,15 +947,13 @@
             position: relative;
             border-radius: 10px;
             padding: 1px;
-            background: #cbd5e1;
+            background: var(--border-glass);
             transition: background 0.3s ease;
         }
-        .input-wrapper:focus-within {
-            background: var(--gradient-cyber);
-        }
+        .input-wrapper:focus-within { background: var(--gradient-cyber); }
         .form-control {
             width: 100%;
-            background: #f8fafc;
+            background: var(--input-bg);
             border: none;
             outline: none;
             padding: 14px 20px;
@@ -893,16 +963,11 @@
             font-size: 0.95rem;
             transition: background 0.3s ease;
         }
-        .form-control:focus {
-            background: #ffffff;
-        }
-        textarea.form-control {
-            resize: vertical;
-            min-height: 140px;
-        }
+        .form-control:focus { background: var(--input-focus); }
+        textarea.form-control { resize: vertical; min-height: 140px; }
         .btn-submit {
-            background: var(--text-main);
-            color: #ffffff;
+            background: var(--gradient-cyber);
+            color: var(--btn-text);
             font-weight: 700;
             padding: 16px;
             border: none;
@@ -912,17 +977,19 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
             margin-top: 10px;
+            cursor: pointer;
         }
+        [data-theme="dark"] .btn-submit { box-shadow: 0 4px 15px rgba(0,240,255,0.2); }
         .btn-submit:hover {
-            background: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37, 99, 236, 0.2);
         }
+        [data-theme="dark"] .btn-submit:hover { box-shadow: 0 6px 25px rgba(189,0,255,0.4); }
 
         /* 10. Kapsamlı Footer */
         .footer {
-            background: #0f172a; /* Derin Koyu Gri/Mavi */
-            color: #f8fafc;
+            background: var(--bg-footer); 
+            color: var(--text-inverse);
             border-top: 1px solid var(--border-glass);
             padding: 80px 8% 40px 8%;
             margin-top: 60px;
@@ -934,7 +1001,7 @@
             margin-bottom: 60px;
         }
         .footer-brand p {
-            color: #94a3b8;
+            color: var(--text-footer-muted);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-top: 20px;
@@ -946,23 +1013,18 @@
             gap: 12px;
             text-decoration: none;
         }
-        .footer-logo {
-            height: 40px;
-        }
-        .footer-logo img {
-            height: 100%;
-            object-fit: contain;
-        }
+        .footer-logo { height: 40px; }
+        .footer-logo img { height: 100%; object-fit: contain; }
         .footer-brand-text {
             font-size: 1.3rem;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-inverse);
         }
         .footer-col h5 {
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 22px;
-            color: #ffffff;
+            color: var(--text-inverse);
         }
         .footer-col ul {
             list-style: none;
@@ -971,22 +1033,20 @@
             gap: 12px;
         }
         .footer-col ul a {
-            color: #94a3b8;
+            color: var(--text-footer-muted);
             text-decoration: none;
             font-size: 0.92rem;
             transition: color 0.3s ease;
         }
-        .footer-col ul a:hover {
-            color: var(--primary);
-        }
+        .footer-col ul a:hover { color: var(--primary); }
         .footer-newsletter h5 {
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #ffffff;
+            color: var(--text-inverse);
         }
         .footer-newsletter p {
-            color: #94a3b8;
+            color: var(--text-footer-muted);
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 20px;
@@ -1006,21 +1066,18 @@
             font-family: var(--font-family);
             font-size: 0.9rem;
         }
-        .newsletter-input:focus {
-            border-color: var(--primary);
-        }
+        .newsletter-input:focus { border-color: var(--primary); }
         .btn-newsletter {
             background: var(--gradient-cyber);
             border: none;
             padding: 0 20px;
             border-radius: 8px;
-            color: #ffffff;
+            color: var(--btn-text);
             font-weight: 700;
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
-        .btn-newsletter:hover {
-            transform: scale(1.05);
-        }
+        .btn-newsletter:hover { transform: scale(1.05); }
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 30px;
@@ -1031,7 +1088,7 @@
             gap: 20px;
         }
         .footer-bottom p {
-            color: #94a3b8;
+            color: var(--text-footer-muted);
             font-size: 0.88rem;
         }
         .footer-legal {
@@ -1039,14 +1096,12 @@
             gap: 25px;
         }
         .footer-legal a {
-            color: #94a3b8;
+            color: var(--text-footer-muted);
             text-decoration: none;
             font-size: 0.88rem;
             transition: color 0.3s ease;
         }
-        .footer-legal a:hover {
-            color: #ffffff;
-        }
+        .footer-legal a:hover { color: var(--text-inverse); }
 
         /* Scroll Animasyon Altyapısı */
         .reveal {
@@ -1058,10 +1113,7 @@
         .reveal-up { transform: translateY(40px); }
         .reveal-left { transform: translateX(-50px); }
         .reveal-right { transform: translateX(50px); }
-        .reveal.active {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
+        .reveal.active { opacity: 1; transform: translate(0, 0); }
         
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
@@ -1085,7 +1137,7 @@
                 right: -100%;
                 width: 75%;
                 height: 100vh;
-                background: #ffffff;
+                background: var(--bg-card);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
@@ -1096,6 +1148,7 @@
             .nav-links.active { right: 0; }
             .menu-toggle { display: flex; }
             
+            .nav-actions { margin-right: 15px; }
             .hero-title { font-size: 2.8rem; }
             .hero-description { font-size: 1.1rem; }
             .hero-buttons { flex-direction: column; gap: 15px; }
@@ -1148,12 +1201,19 @@
             <li><a href="#liveops">Metrikler</a></li>
             <li><a href="#faq">S.S.S.</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Stüdyoya Bağlan</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü Aç">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="nav-actions">
+            <!-- Gece/Gündüz Teması Değiştirme Butonu -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Temayı Değiştir">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+            <a href="#contact" class="nav-cta">Stüdyoya Bağlan</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü Aç">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- 2. Devasa Hero Seksiyonu -->
@@ -1462,6 +1522,29 @@
 
     <!-- JavaScript Dinamikleri -->
     <script>
+        // Tema Değiştirme Mantığı (LocalStorage destekli)
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        // Kayıtlı temayı veya sistem tercihini kontrol et
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            htmlElement.setAttribute('data-theme', 'dark');
+        }
+        
+        // Butona tıklandığında temayı değiştir
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
         // Preloader Mantığı
         window.addEventListener('DOMContentLoaded', () => {
             const bar = document.getElementById('loaderBar');
