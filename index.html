@@ -21,7 +21,7 @@
             --accent: #db2777; 
             --text-main: #0f172a; 
             --text-muted: #475569; 
-            --text-inverse: #ffffff;
+            --text-inverse: #ffffff; /* Footer gibi koyu zeminlerdeki yazı rengi */
             --text-footer-muted: #94a3b8;
             --border-glass: rgba(15, 23, 42, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -48,7 +48,7 @@
             --accent: #ff007f;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            --text-inverse: #040408;
+            --text-inverse: #ffffff; /* DÜZELTME: Karanlık temada da footer koyu olduğu için yazı BEYAZ kalmalı */
             --text-footer-muted: #9ca3af;
             --border-glass: rgba(255, 255, 255, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -870,7 +870,6 @@
         .faq-icon::before { top: 11px; left: 4px; width: 16px; height: 2px; }
         .faq-icon::after { top: 4px; left: 11px; width: 2px; height: 16px; }
         
-        /* BURASI DÜZELTİLDİ: "active" yerine "open" kullanıyoruz */
         .faq-item.open {
             border-color: var(--primary);
             background: var(--bg-card);
@@ -991,14 +990,20 @@
         }
         .footer-logo { height: 40px; }
         .footer-logo img { height: 100%; object-fit: contain; }
+        
+        /* DÜZELTME: Footer Logo Metni (Aynı Navbar Gibi Olacak) */
         .footer-brand-text {
             font-size: 1.3rem;
             font-weight: 800;
             color: var(--text-inverse);
+            letter-spacing: -0.5px;
         }
         .footer-brand-text .highlight {
-            color: var(--primary);
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        
         .footer-col h5 {
             font-size: 1.1rem;
             font-weight: 700;
@@ -1148,7 +1153,6 @@
 </head>
 <body>
 
-    <!-- Gelişmiş Preloader -->
     <div id="preloader">
         <div class="reveal-logo-group">
             <img src="MehfunLogo.png" alt="MehfunGames Logo" class="loader-logo">
@@ -1160,11 +1164,9 @@
         <div class="loader-text">Sistem Yükleniyor...</div>
     </div>
 
-    <!-- Küresel Ortam Işıkları -->
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- 1. Dinamik Navbar -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo-container">
             <div class="nav-logo">
@@ -1179,7 +1181,6 @@
             <li><a href="#faq">S.S.S.</a></li>
         </ul>
         <div class="nav-actions">
-            <!-- Gece/Gündüz Teması Değiştirme Butonu -->
             <button id="themeToggle" class="theme-toggle" aria-label="Temayı Değiştir">
                 <span class="icon-sun">☀️</span>
                 <span class="icon-moon">🌙</span>
@@ -1193,7 +1194,6 @@
         </div>
     </nav>
 
-    <!-- 2. Devasa Hero Seksiyonu -->
     <section class="hero-section" id="hero">
         <div class="hero-shapes">
             <div class="shape-blob sb-1"></div>
@@ -1210,7 +1210,6 @@
         </div>
     </section>
 
-    <!-- 3. Kreatif Vizyonumuz (Hakkımızda) -->
     <section id="vision">
         <h2 class="section-title">Kreatif <span>Vizyonumuz</span></h2>
         <div class="vision-grid">
@@ -1232,7 +1231,6 @@
         </div>
     </section>
 
-    <!-- 4. Ana Ürün Vitrini -->
     <section id="showcase">
         <h2 class="section-title">Amiral Gemisi <span>Ürünümüz</span></h2>
         <div class="showcase-container reveal reveal-fade">
@@ -1272,7 +1270,6 @@
                     </div>
                 </div>
 
-                <!-- Google Play Store Butonu -->
                 <a href="#" class="playstore-btn">
                     <svg viewBox="0 0 512 512">
                         <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0c-2.2 0-4.3.4-6.2 1.1L275.1 235 47 423.1V0zm392 211.1c25.1 14.4 25.1 37.5 0 51.9l-58.3 33.5-61.2-61.2 61.2-61.2 58.3 33.5zM385.4 337.8L104.6 499l220.7-126.5 60.1-60.1-60.1-14.6z"/>
@@ -1292,7 +1289,6 @@
         </div>
     </section>
 
-    <!-- 5. Geliştirme Süreci (Roadmap) -->
     <section id="timeline">
         <h2 class="section-title">Geliştirme <span>Sürecimiz</span></h2>
         <div class="timeline">
@@ -1327,7 +1323,6 @@
         </div>
     </section>
 
-    <!-- 6. Canlı Operasyonlar Merkezi Tasarım -->
     <section id="liveops">
         <h2 class="section-title">Canlı <span>Operasyonlar</span></h2>
         <div class="liveops-container reveal reveal-up">
@@ -1348,7 +1343,6 @@
         </div>
     </section>
 
-    <!-- 7. Tasarım ve Teknoloji Yığınımız (Sonsuz Bant) -->
     <div class="marquee-section">
         <div class="marquee-wrapper">
             <div class="marquee-item">⚡ Unity Engine</div>
@@ -1359,7 +1353,6 @@
             <div class="marquee-item">💎 AdMob</div>
             <div class="marquee-item">💻 C# & Kotlin</div>
             <div class="marquee-item">🚀 Git Ecosystem</div>
-            <!-- Sonsuz akış için kopyalar -->
             <div class="marquee-item">⚡ Unity Engine</div>
             <div class="marquee-item">🎨 Figma</div>
             <div class="marquee-item">🛠️ Android Studio</div>
@@ -1371,7 +1364,6 @@
         </div>
     </div>
 
-    <!-- 8. Sıkça Sorulan Sorular (FAQ) -->
     <section id="faq">
         <h2 class="section-title">Sıkça Sorulan <span>Sorular</span></h2>
         <div class="faq-container">
@@ -1449,7 +1441,6 @@
         </div>
     </section>
 
-    <!-- 9. İletişim Formu -->
     <section id="contact">
         <h2 class="section-title">Stüdyo ile <span>İletişime Geç</span></h2>
         <div class="contact-container reveal reveal-up">
@@ -1477,7 +1468,6 @@
         </div>
     </section>
 
-    <!-- 10. Kapsamlı Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
@@ -1525,7 +1515,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript Dinamikleri -->
     <script>
         // Tema Değiştirme Mantığı (LocalStorage destekli)
         const themeToggle = document.getElementById('themeToggle');
