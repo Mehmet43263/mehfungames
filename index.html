@@ -739,7 +739,7 @@
             line-height: 1.5;
         }
 
-        /* 6. Canlı Operasyonlar (LiveOps) Merkezi Hizalama */
+        /* 6. Canlı Operasyonlar Merkezi Tasarım */
         .liveops-container {
             display: flex;
             flex-direction: column;
@@ -870,13 +870,14 @@
         .faq-icon::before { top: 11px; left: 4px; width: 16px; height: 2px; }
         .faq-icon::after { top: 4px; left: 11px; width: 2px; height: 16px; }
         
-        .faq-item.active {
+        /* BURASI DÜZELTİLDİ: "active" yerine "open" kullanıyoruz */
+        .faq-item.open {
             border-color: var(--primary);
             background: var(--bg-card);
         }
-        .faq-item.active .faq-header h4 { color: var(--primary); }
-        .faq-item.active .faq-icon { transform: rotate(135deg); }
-        .faq-item.active .faq-icon::before, .faq-item.active .faq-icon::after {
+        .faq-item.open .faq-header h4 { color: var(--primary); }
+        .faq-item.open .faq-icon { transform: rotate(135deg); }
+        .faq-item.open .faq-icon::before, .faq-item.open .faq-icon::after {
             background-color: var(--primary);
         }
         .faq-body {
@@ -1233,7 +1234,7 @@
 
     <!-- 4. Ana Ürün Vitrini -->
     <section id="showcase">
-        <h2 class="section-title">Amiral Gemisi <span>Ürünlerimiz</span></h2>
+        <h2 class="section-title">Amiral Gemisi <span>Ürünümüz</span></h2>
         <div class="showcase-container reveal reveal-fade">
             <div class="showcase-content">
                 <span class="showcase-tag">Öne Çıkan Uygulama</span>
@@ -1628,25 +1629,25 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // FAQ Accordion Mekanizması
+        // FAQ Accordion Mekanizması DÜZELTİLDİ ("active" yerine "open" kullanılıyor)
         document.querySelectorAll('.faq-header').forEach(header => {
             header.addEventListener('click', () => {
                 const item = header.parentElement;
                 const body = item.querySelector('.faq-body');
                 
-                if (item.classList.contains('active')) {
+                if (item.classList.contains('open')) {
                     // Tıklanan zaten açıksa kapat
                     body.style.maxHeight = null;
-                    item.classList.remove('active');
+                    item.classList.remove('open');
                 } else {
-                    // Diğer açık olanları kapat (Opsiyonel - bir tane açık kalsın istersen)
-                    document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+                    // Diğer açık olanları kapat
+                    document.querySelectorAll('.faq-item.open').forEach(activeItem => {
                         activeItem.querySelector('.faq-body').style.maxHeight = null;
-                        activeItem.classList.remove('active');
+                        activeItem.classList.remove('open');
                     });
                     
                     // Tıklananı aç
-                    item.classList.add('active');
+                    item.classList.add('open');
                     body.style.maxHeight = body.scrollHeight + "px";
                 }
             });
