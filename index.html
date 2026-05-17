@@ -9,7 +9,6 @@
 
         /* ----------------------------------
            Aydınlık (Light) Tema Değişkenleri 
-           (Varsayılan)
         ----------------------------------- */
         :root {
             --bg-main: #f8fafc;
@@ -21,14 +20,12 @@
             --accent: #db2777; 
             --text-main: #0f172a; 
             --text-muted: #475569; 
-            --text-inverse: #ffffff; 
+            --text-inverse: #ffffff;
             --text-footer-muted: #94a3b8;
             --border-glass: rgba(15, 23, 42, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
             --font-family: 'Plus Jakarta Sans', sans-serif;
             --gradient-cyber: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --input-bg: #f8fafc;
-            --input-focus: #ffffff;
             --btn-text: #ffffff;
             --glow-opacity: 0.06;
             --glow-1: rgba(124, 58, 237, var(--glow-opacity));
@@ -53,8 +50,6 @@
             --border-glass: rgba(255, 255, 255, 0.08);
             --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
             --gradient-cyber: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --input-bg: #0d0d17;
-            --input-focus: #0a0a12;
             --btn-text: #040408;
             --glow-opacity: 0.15;
             --glow-1: rgba(189, 0, 255, var(--glow-opacity));
@@ -63,8 +58,7 @@
 
         /* Tema Geçiş Animasyonu */
         body, .navbar, .vision-card, .showcase-container, .timeline-content, 
-        .metric-card, .faq-item, .contact-container, .form-control, .input-wrapper,
-        .footer, .footer-bottom, .playstore-btn {
+        .faq-item, .footer, .footer-bottom, .playstore-btn {
             transition: background-color 0.5s ease, background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
         }
 
@@ -570,6 +564,7 @@
             color: var(--text-muted);
             line-height: 1.4;
         }
+        
         .playstore-btn {
             display: inline-flex;
             align-items: center;
@@ -598,21 +593,28 @@
             border-color: var(--primary);
             box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
         }
+        
+        /* GÜVENLİK DÜZELTMESİ: İkonun boyutları sabitlendi */
         .playstore-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 28px !important;
+            height: 28px !important;
+            min-width: 28px;
             fill: currentColor;
+            display: block;
         }
+        
         .playstore-btn .btn-info text { display: block; }
         .playstore-btn .subtext {
             font-size: 0.7rem;
             opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: block;
         }
         .playstore-btn .maintext {
             font-size: 1.05rem;
             font-weight: 700;
+            display: block;
         }
         .showcase-visual {
             display: flex;
@@ -721,58 +723,6 @@
             line-height: 1.5;
         }
 
-        /* 6. Canlı Operasyonlar Merkezi Tasarım */
-        .liveops-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            gap: 40px;
-        }
-        .liveops-content h3 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-        .liveops-content p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-        }
-        .metric-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            padding: 30px 20px;
-            border-radius: 12px;
-            position: relative;
-            box-shadow: var(--shadow-premium);
-            text-align: center;
-        }
-        .metric-card h4 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        .metric-card:nth-child(2) h4 { color: var(--secondary); }
-        .metric-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin: 0;
-            font-weight: 500;
-        }
-
         /* 7. Tasarım ve Teknoloji Yığınımız (Marquee) */
         .marquee-section {
             padding: 40px 0;
@@ -780,6 +730,7 @@
             border-top: 1px solid var(--border-glass);
             border-bottom: 1px solid var(--border-glass);
             overflow: hidden;
+            margin-top: 60px;
         }
         [data-theme="dark"] .marquee-section { background: rgba(255, 255, 255, 0.01); }
         .marquee-wrapper {
@@ -1016,7 +967,6 @@
             .timeline-container::after { left: 22px; right: auto; }
             .right::after { left: 22px; }
             
-            .metrics-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 35px; }
         }
     </style>
@@ -1139,7 +1089,7 @@
                     </div>
                 </div>
 
-                <a href="#" class="https://play.google.com/store/apps/details?id=com.mehmet.prankmachine" class="playstore-btn">
+                <a href="https://play.google.com/store/apps/developer?id=com.mehmet.prankmachine" target="_blank" class="playstore-btn">
                     <svg viewBox="0 0 512 512">
                         <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0c-2.2 0-4.3.4-6.2 1.1L275.1 235 47 423.1V0zm392 211.1c25.1 14.4 25.1 37.5 0 51.9l-58.3 33.5-61.2-61.2 61.2-61.2 58.3 33.5zM385.4 337.8L104.6 499l220.7-126.5 60.1-60.1-60.1-14.6z"/>
                     </svg>
@@ -1187,26 +1137,6 @@
                     <div class="timeline-step">Aşama 04</div>
                     <h3>Test & Optimizasyon</h3>
                     <p>Cihaz testleri, FPS stabilizasyon kontrolleri ve kullanıcı deneyimi simülasyonları ile hatasız ve akıcı bir son sürüme ulaşıyoruz.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="liveops">
-        <h2 class="section-title">Canlı <span>Operasyonlar</span></h2>
-        <div class="liveops-container reveal reveal-up">
-            <div class="liveops-content">
-                <h3>Veri Odaklı Büyüme Stratejisi</h3>
-                <p>Uygulamalarımızın ve oyunlarımızın küresel mağazalardaki performansını, kullanıcı tutundurma oranlarını ve metrik anomalilerini anlık olarak izliyoruz. Gerçek zamanlı LiveOps operasyonlarımız sayesinde kullanıcı taleplerine hızla yanıt veriyoruz.</p>
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <h4>%99.9</h4>
-                        <p>Kilitlenme Karşıtı Stabilite</p>
-                    </div>
-                    <div class="metric-card">
-                        <h4>100K+</h4>
-                        <p>Aktif Etkileşim Potansiyeli</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1292,18 +1222,6 @@
                 <div class="faq-body">
                     <div class="faq-content">
                         Şuanlık öyle bir düşüncemiz yok. Açık pozisyonlarımız olmasa bile iletişim sayfamızdan portfolyonuzu ve kendinizi tanıtan bir mail atabilirsiniz.
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item reveal reveal-up delay-2">
-                <div class="faq-header">
-                    <h4>Yeni bir proje fikri için iş birliklerine açık mısınız?</h4>
-                    <div class="faq-icon"></div>
-                </div>
-                <div class="faq-body">
-                    <div class="faq-content">
-                        Yaratıcı, katma değer sağlayan ve vizyonumuzla eşleşen her türlü bağımsız oyun projesi ve stratejik iş birliği tekliflerine açığız. Bizimle iletişim formu üzerinden irtibata geçebilirsiniz.
                     </div>
                 </div>
             </div>
